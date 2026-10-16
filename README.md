@@ -1,6 +1,6 @@
 # QR Code Builder
 
-A feature-rich Windows desktop app for generating QR codes as both **PNG** and **SVG** — with a live preview, logo embedding, custom colours, flexible export options, and settings that persist between sessions.
+A feature-rich Windows desktop app for generating QR codes as **PNG**, **SVG**, and **EPS** — with a live preview, logo embedding, custom colours, and flexible export options. Every generate click produces three files: a raster image for digital use and two true vector files for infinite scalability in print and design workflows.
 
 Built with Python and CustomTkinter for a clean, modern look that works in dark and light themes.
 
@@ -13,26 +13,25 @@ Most QR code tools fall into one of three categories: **online generators**, **m
 | | Online generators | Mobile apps | QR Code Builder |
 |---|---|---|---|
 | Works offline | ✗ | ✓ | ✓ |
-| Exports true SVG | Rarely | ✗ | ✓ |
+| True vector export (SVG + EPS) | Rarely | ✗ | ✓ |
 | Custom colours & shapes | Limited | Limited | ✓ |
 | Logo embedding | Paid tier | Paid tier | ✓ |
 | No watermarks | Paid tier | Paid tier | ✓ |
 | No account required | ✗ | ✗ | ✓ |
-| Settings persist | ✗ | ✓ | ✓ |
 | Open source | ✗ | Rarely | ✓ |
 
-**Online generators** (QR Code Generator, QRCode Monkey, etc.) are quick for one-offs but require an internet connection, often add watermarks on free plans, and rarely export a true scalable SVG — they embed a raster image inside an SVG wrapper. Your data also passes through a third-party server.
+**Online generators** (QR Code Generator, QRCode Monkey, etc.) are quick for one-offs but require an internet connection, often add watermarks on free plans, and rarely export true vector files — they embed a raster image inside an SVG wrapper. Your data also passes through a third-party server.
 
 **Mobile apps** are convenient but poor for production work: small screens, no fine colour control, and no path to a print-ready vector file.
 
-**QR Code Builder** is a free, open-source desktop app that runs entirely on your machine. It produces a genuine SVG (via the [segno](https://github.com/heuer/segno) library) alongside a high-resolution PNG, supports every common customisation option in a single window, and remembers your settings between sessions so repeat work is instant.
+**QR Code Builder** is a free, open-source desktop app that runs entirely on your machine. Every generate click saves three files: a high-resolution **PNG** for digital use, an **SVG** for web and digital design, and an **EPS** for print workflows in Adobe Illustrator, InDesign, CorelDRAW, and similar tools. All three are generated from the same settings in a single click, with no external services involved.
 
 ---
 
 ## Features
 
 - **Live preview** — QR code updates as you type the URL
-- **Dual output** — saves both a PNG (raster) and an SVG (infinitely scalable vector) in one click
+- **Three output formats** — saves PNG (raster), SVG (vector for web/digital), and EPS (vector for print) in one click
 - **Custom colours** — foreground and background colour pickers
 - **Transparent background** — PNG with alpha channel and SVG with no fill
 - **Three module shapes** — Square, Rounded, or Circle (PNG only)

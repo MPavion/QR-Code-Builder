@@ -49,7 +49,7 @@ TIPS = {
     "logo":        "Embed a logo or icon in the centre of the QR code.\nAlways use H (High) error correction with a logo so the\ncode can still be decoded despite the obstruction.",
     "logo_size":   "How large the logo is relative to the QR code width.\n20% is a safe default. Above 30% may cause scan failures\neven with H correction.",
     "clipboard":   "Copies the PNG to your clipboard immediately after saving,\nso you can paste it into Word, Slack, email, etc.",
-    "gen":         "Saves both a PNG image and a scalable SVG file to your chosen folder.",
+    "gen":         "Saves a PNG image, a scalable SVG, and a print-ready EPS vector file to your chosen folder.",
     "shortcut":    "Create a desktop shortcut that launches this app directly.",
 }
 
@@ -174,6 +174,13 @@ def render_svg(qr, fg: str, bg: str, transparent: bool, quiet_zone: int) -> byte
     buf   = io.BytesIO()
     light = None if transparent else bg
     qr.save(buf, kind="svg", dark=fg, light=light, border=quiet_zone, scale=10)
+    return buf.getvalue()
+
+
+def render_eps(qr, fg: str, bg: str, transparent: bool, quiet_zone: int) -> bytes:
+    buf   = io.BytesIO()
+    light = None if transparent else bg
+    qr.save(buf, kind="eps", dark=fg, light=light, border=quiet_zone, scale=10)
     return buf.getvalue()
 
 
@@ -939,14 +946,21 @@ class App(ctk.CTk):
                     qr, s["fg_color"], s["bg_color"],
                     s["transparent_bg"], s["quiet_zone"],
                 )
+                eps = render_eps(
+                    qr, s["fg_color"], s["bg_color"],
+                    s["transparent_bg"], s["quiet_zone"],
+                )
                 folder = s["output_folder"] or DOWNLOADS
                 os.makedirs(folder, exist_ok=True)
                 stem     = build_filename(s["filename_template"], url)
                 png_path = os.path.join(folder, stem + ".png")
                 svg_path = os.path.join(folder, stem + ".svg")
+                eps_path = os.path.join(folder, stem + ".eps")
                 png.save(png_path, format="PNG")
                 with open(svg_path, "wb") as fh:
                     fh.write(svg)
+                with open(eps_path, "wb") as fh:
+                    fh.write(eps)
                 if s["copy_to_clipboard"]:
                     _copy_png_to_clipboard(png_path)
                 recent = [url] + [u for u in self.cfg.get("recent_urls", [])
@@ -963,7 +977,7 @@ class App(ctk.CTk):
     def _on_save_done(self, png_path: str) -> None:
         self.gen_btn.configure(state="normal", text="Generate & Save QR Code")
         self.status_var.set(
-            f"Saved {os.path.basename(png_path)} + SVG  →  {os.path.dirname(png_path)}")
+            f"Saved PNG + SVG + EPS  →  {os.path.dirname(png_path)}")
         self._refresh_preview()
         recent = self.cfg.get("recent_urls", [])
         if recent:
