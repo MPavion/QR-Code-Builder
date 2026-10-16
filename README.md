@@ -8,6 +8,8 @@ Built with Python and CustomTkinter for a clean, modern look that works in dark 
 
 ## Why this app?
 
+I built this because every time I needed a QR code for one of my websites, free online tools would either show adverts, require an account, or — most frustratingly — encode their own tracking URL instead of my URL. Scanning the code would redirect through their server before landing on my site. I just wanted a direct link: scan the code, go straight to the website, nothing in between.
+
 Most QR code tools fall into one of three categories: **online generators**, **mobile apps**, or **enterprise software**. None of them are ideal for a designer, developer, or business owner who needs to produce clean, customised QR codes repeatedly on a desktop.
 
 | | Online generators | Mobile apps | QR Code Builder |
