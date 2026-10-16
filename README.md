@@ -6,6 +6,29 @@ Built with Python and CustomTkinter for a clean, modern look that works in dark 
 
 ---
 
+## Why this app?
+
+Most QR code tools fall into one of three categories: **online generators**, **mobile apps**, or **enterprise software**. None of them are ideal for a designer, developer, or business owner who needs to produce clean, customised QR codes repeatedly on a desktop.
+
+| | Online generators | Mobile apps | QR Code Builder |
+|---|---|---|---|
+| Works offline | ✗ | ✓ | ✓ |
+| Exports true SVG | Rarely | ✗ | ✓ |
+| Custom colours & shapes | Limited | Limited | ✓ |
+| Logo embedding | Paid tier | Paid tier | ✓ |
+| No watermarks | Paid tier | Paid tier | ✓ |
+| No account required | ✗ | ✗ | ✓ |
+| Settings persist | ✗ | ✓ | ✓ |
+| Open source | ✗ | Rarely | ✓ |
+
+**Online generators** (QR Code Generator, QRCode Monkey, etc.) are quick for one-offs but require an internet connection, often add watermarks on free plans, and rarely export a true scalable SVG — they embed a raster image inside an SVG wrapper. Your data also passes through a third-party server.
+
+**Mobile apps** are convenient but poor for production work: small screens, no fine colour control, and no path to a print-ready vector file.
+
+**QR Code Builder** is a free, open-source desktop app that runs entirely on your machine. It produces a genuine SVG (via the [segno](https://github.com/heuer/segno) library) alongside a high-resolution PNG, supports every common customisation option in a single window, and remembers your settings between sessions so repeat work is instant.
+
+---
+
 ## Features
 
 - **Live preview** — QR code updates as you type the URL
